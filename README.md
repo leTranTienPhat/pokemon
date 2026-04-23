@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pokémon Demo - LeTranTienPhat
 
-## Getting Started
+A demo showcasing caching & SSR techniques with Next.js 16 using cacheComponents.
 
-First, run the development server:
+UI + Feature Reference: https://itc.it-consultis.net/pokemon
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Developing Process (Total Time: ~170mins)
+
+### I. Init source base (~30mins)
+
+- Init source base with `bun create next-app@latest`
+- Remove default styling and demo code
+- Init some Prettier + ESlint + .vscode rules for synchronize coding style
+- Setup next config files for SSR and caching
+- Add Husky for commitlint
+
+### II. Implementation (~80mins)
+
+- Build page for pokemons list and filter
+- Setup api calls (https://pokeapi.co/)
+- Optimize for SSR and caching using `cacheComponents` feature of Next.js 16
+- Research and implement filter strategy for pokemon's type filter
+
+About filter pokemon by type: In the [Original demo version](https://itc.it-consultis.net/pokemon), we can see that it can filter multiple pokemon's type at once, but I saw that it did not work correctly. So after some research, I found out that PokeAPI doesn't support multiple type filter, so in order to archive multiple type filter feature, I will have to follow one of the below strategies:
+
+1. Fetch all pokemon available, then filter by type in client side.
+2. Fetch all pokemon of the selected types, and then loop through the list to get the all pokemon that match with the selected types.
+
+Because both of the strategies above is not efficient, so in my version, it's best that I disable the multiple type filter feature and only support single type filter.
+
+### III. Final Improvements (~60mins)
+
+- Manual test to see if the app works as expected
+- Further improve performance and caching strategy
+- Update README.md
+
+---
+
+## ✨ Tech Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Runtime:** Bun – fast JavaScript runtime & package manager.
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+
+---
+
+## 📁 Project Structure
+
+```
+pokemon/
+├─ app/                 # Next.js App Router pages & layout
+├─ components/          # Shared UI components
+│   └─ ui/               # Reusable UI components
+│       └─ button.tsx    # Example Button (not used in the app)
+├─ lib/                 # Helper utilities
+├─ modules/             # Feature‑based modules (home, about, etc)
+│   └─ home/            # Components for home module
+│       └─ client/      # Client components are separated into dedicated folder
+│           └─ filter-link.tsx
+├─ public/              # Static assets (images, favicon, etc.)
+├─ types/               # Global TypeScript types
+├─ next.config.ts       # Next.js configuration
+├─ package.json         # Project dependencies & scripts
+└─ tsconfig.json        # TypeScript configuration
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **`components/ui`** is included solely as a structural demo; its `Button` component is intentionally **not used** anywhere in the app.
+- The **`modules`** directory follows a feature‑based pattern, keeping related UI, hooks, and server logic together.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Getting Started
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+- **Bun** (recommended) – install from https://bun.sh
+- Node.js (if you prefer npm/yarn/pnpm) – the project works with any runtime, but scripts use Bun by default.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+# Clone the repo
+git clone <repo-url>
+cd pokemon
 
-## Deploy on Vercel
+# Install dependencies using Bun (or npm)
+bun install   # or npm install
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Development
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+bun dev   # Starts the development server at http://localhost:3000
+# or npm run dev
+```
+
+The app supports hot‑reloading; edit files under `app/` or `modules/` and see changes instantly.
+
+### Build & Production
+
+```bash
+bun build   # or npm run build
+bun start   # or npm start
+```
+
+---
+
+## 📦 Scripts Overview (package.json)
+
+| Script   | Description                              |
+| -------- | ---------------------------------------- |
+| `dev`    | Starts the Next.js dev server (Bun)      |
+| `build`  | Compiles the app for production          |
+| `start`  | Runs the compiled app in production mode |
+| `lint`   | Runs ESLint across the codebase          |
+| `format` | Formats code with Prettier               |
+
+---
