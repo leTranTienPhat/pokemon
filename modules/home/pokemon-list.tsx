@@ -2,18 +2,22 @@ import { getPokemons } from '@/api/pokemon';
 import { PokemonItem } from '@/modules/home/pokemon-item';
 import { PokemonSearchParams } from '@/types/pokemon';
 import Link from 'next/link';
+import { ReadonlyURLSearchParams } from 'next/navigation';
 
 export const PokemonList = async ({
   searchParams,
 }: {
   searchParams: Promise<PokemonSearchParams>;
 }) => {
-  const { page, type } = await searchParams;
+  const resolvedSearchParam = await searchParams;
+  const { page, type } = resolvedSearchParam;
   const pageNumber = page ? parseInt(page, 10) : 1;
   const pokemonData = await getPokemons(pageNumber, type);
 
   const navigateUrl = (pageNumber: number) => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(
+      resolvedSearchParam as ReadonlyURLSearchParams
+    );
     params.set('page', pageNumber.toString());
 
     return `/pokemon?${params.toString()}`;

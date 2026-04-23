@@ -11,7 +11,7 @@ export const FilterLink = ({ name }: { name: string }) => {
   const isActive = filteredType === name;
 
   const updatedSearchParams = (() => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams);
     if (name === filteredType) {
       params.delete('type');
     } else {

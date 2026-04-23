@@ -19,7 +19,7 @@ export default function Home({
         <PokemonCount searchParams={searchParams} />
       </Suspense>
       <PokemonFilter />
-      <Suspense fallback={<></>}>
+      <Suspense fallback={<p className="text-center">Loading...</p>}>
         <PokemonList searchParams={searchParams} />
       </Suspense>
     </section>
