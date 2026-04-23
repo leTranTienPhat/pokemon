@@ -95,8 +95,6 @@ bun dev   # Starts the development server at http://localhost:3000
 # or npm run dev
 ```
 
-The app supports hot‑reloading; edit files under `app/` or `modules/` and see changes instantly.
-
 ### Build & Production
 
 ```bash
@@ -106,7 +104,7 @@ bun start   # or npm start
 
 ---
 
-## 📦 Scripts Overview (package.json)
+## 📦 Scripts Overview
 
 | Script   | Description                              |
 | -------- | ---------------------------------------- |
