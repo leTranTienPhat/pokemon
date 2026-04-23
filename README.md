@@ -6,6 +6,8 @@ UI + Feature Reference: https://itc.it-consultis.net/pokemon
 
 ## Developing Process (Total Time: ~170mins)
 
+Project is built with Next.js 16 using cacheComponents feature. It is optimized for SSR and caching. With this, all user will be able to access the same cached contents when visiting the page.
+
 ### I. Init source base (~30mins)
 
 - Init source base with `bun create next-app@latest`
@@ -57,7 +59,9 @@ pokemon/
 ├─ modules/             # Feature‑based modules (home, about, etc)
 │   └─ home/            # Components for home module
 │       └─ client/      # Client components are separated into dedicated folder
-│           └─ filter-link.tsx
+│           └─ filter-link.tsx     # This can also be a server component,
+│                                     but I choose it to be a client component
+│                                     to showcase how I would handle client components
 ├─ public/              # Static assets (images, favicon, etc.)
 ├─ types/               # Global TypeScript types
 ├─ next.config.ts       # Next.js configuration
