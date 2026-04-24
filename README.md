@@ -2,8 +2,6 @@
 
 A demo showcasing caching & SSR techniques with Next.js 16 using cacheComponents.
 
-UI + Feature Reference: https://itc.it-consultis.net/pokemon
-
 ## Developing Process (Total Time: ~170mins)
 
 Project is built with Next.js 16 using cacheComponents feature. It is optimized for SSR and caching. With this, all user will be able to access the same cached contents when visiting the page.
